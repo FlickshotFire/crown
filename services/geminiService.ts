@@ -1,6 +1,4 @@
 
-
-import { GoogleGenAI } from "@google/genai";
 import { ChatMessage } from '../types';
 
 
@@ -59,31 +57,17 @@ export const generateSpyReport = async (reportData: any) => {
     return Promise.resolve(narrative);
 };
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
-const systemInstruction = "You are a royal advisor in a medieval strategy game called Goodgame Empire. Your name is Eldrin. Be formal, wise, and slightly dramatic. Refer to the player as 'My Lord' or 'Your Highness'. Keep your responses concise and related to managing a castle and an army. Do not use markdown.";
+// Mocked chat response to align with other mocked functions
+const aiResponses = [
+    "Indeed, My Lord. What is your command?",
+    "A wise decision, Your Highness. It shall be done.",
+    "Consider the matter handled, My Lord.",
+    "As you wish. The realm will prosper under your guidance.",
+    "I shall see to it immediately, Your Highness.",
+    "My apologies, Your Highness. A fog of confusion clouds my thoughts. Please, ask again later."
+];
 
 export const generateChatResponse = async (history: ChatMessage[], newMessage: string): Promise<string> => {
-    try {
-        const contents = [
-            ...history.map(msg => ({
-                role: msg.sender === 'user' ? 'user' : 'model',
-                parts: [{ text: msg.text }]
-            })),
-            { role: 'user', parts: [{ text: newMessage }] }
-        ];
-
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
-            contents: contents,
-            config: {
-                systemInstruction: systemInstruction
-            }
-        });
-        
-        return response.text;
-
-    } catch (e) {
-        console.error("Gemini API call failed", e);
-        return "My apologies, Your Highness. A fog of confusion clouds my thoughts. Please, ask again later.";
-    }
+    // Return a random, pre-written response to avoid API calls.
+    return Promise.resolve(aiResponses[Math.floor(Math.random() * aiResponses.length)]);
 };
