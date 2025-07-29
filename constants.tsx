@@ -2,6 +2,7 @@
 
 
 
+
 import React from 'react';
 import { ResourceType, TroopType, POIType, ToolType, BuildingCategory, LeaderboardPlayer, NomadEventData } from './types';
 import { ICONS } from './assets';
@@ -231,8 +232,8 @@ export const BUILDINGS = [
   },
   {
     id: 'rookery',
-    name: 'Tavern',
-    description: 'Increases the number of agents you can deploy',
+    name: 'Rookery',
+    description: 'Houses messenger ravens, allowing you to recruit and manage more spies.',
     icon: ICONS.BuildingIcons.Rookery(),
     width: 3,
     height: 3,
@@ -945,9 +946,9 @@ export const QUESTS = [
     {
         id: 'quest_build_rookery',
         title: "Eyes in the Sky",
-        description: "Knowledge is power. Construct a Tavern to recruit spies and uncover your enemies' secrets before you strike.",
+        description: "Knowledge is power. Construct a Rookery to recruit spies and uncover your enemies' secrets before you strike.",
         type: 'build',
-        target: 'rookery', // "rookery" is the id for Tavern in the code
+        target: 'rookery',
         reward: { [ResourceType.Coins]: 500, [ResourceType.Rubies]: 15 },
         isCompleted: false,
     },
